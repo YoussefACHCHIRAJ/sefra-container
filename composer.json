@@ -1,0 +1,20 @@
+{
+  "name": "sefra/container",
+  "description": "service container for wordpress plugins and themes",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Sefra\\": "src/"
+    }
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "YoussefACHCHIRAJ",
+      "email": "youssefachchiraj@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.1"
+  }
+}
