@@ -7,6 +7,15 @@ It allows you to **bind classes, singletons, and closures**, and automatically r
 
 This container is a core part of the [Sefra WordPress Plugin Starter Kit](https://github.com/YoussefACHCHIRAJ/sefra-plugin-starter), providing dependency injection and service management for plugins.
 
+## Documentation
+
+If you have a WordPress plugin and want to integrate Sefra Container to manage dependency injection, check this guide: [How To Use Sefra Container](https://achchiraj.dev/plugins/sefra-container/how-to-use)
+
+If you’re starting a new plugin, you might find this starter kit useful:
+- repository: [Sefra WordPress Plugin Starter Kit](https://github.com/YoussefACHCHIRAJ/sefra-plugin-starter)
+- documentation on it built: [documentation](https://achchiraj.dev/plugins/sefra-starter)
+
+
 ## Installation
 
 Use Composer to install:
