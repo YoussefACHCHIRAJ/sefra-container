@@ -14,6 +14,7 @@ class Container
     protected $bindings = [];
     protected $instances = [];
     protected array $buildStack = [];
+    protected bool $forbidContainerInjection = true;
 
     public static function getInstance(): Container
     {
@@ -24,6 +25,11 @@ class Container
         }
 
         return $instance;
+    }
+
+    public function forbiddenContainerInjection(bool $forbid = true)
+    {
+        $this->forbidContainerInjection = $forbid;
     }
 
     public function bind($abstract, $concrete = null, bool $shared = false)
@@ -124,13 +130,6 @@ class Container
         // used as resolvers for more fine-tuned resolution of these objects.
         if ($concrete instanceof Closure) {
 
-            $reflection = new ReflectionFunction($concrete);
-
-            foreach ($reflection->getParameters() as $param) {
-                if ($param->getType()?->getName() === self::class) {
-                    throw new BindingResolutionException("Injecting the container into services is forbidden.");
-                }
-            }
             return $concrete($this);
         }
 
@@ -183,7 +182,7 @@ class Container
                 );
             }
 
-            if ($type->getName() === self::class) {
+            if ($type->getName() === self::class && $this->forbidContainerInjection) {
                 throw new BindingResolutionException(
                     "Injecting the container into services is forbidden."
                 );
@@ -193,5 +192,10 @@ class Container
         }
 
         return $results;
+    }
+
+    public function instance($abstract, $instance)
+    {
+        $this->instances[$abstract] = $instance;
     }
 }
